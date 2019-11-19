@@ -9,15 +9,23 @@ import (
 )
 
 func main() {
+	log.SetOutput(os.Stderr)
 	if len(os.Args) != 2 {
 		log.Fatalln("Must pass the Changelog file name as the first argument")
 	}
-	file := os.Args[1]
-	data, err := os.Open(file)
-	if err != nil {
+	filename := os.Args[1]
+	if err := printReleaseNotes(filename); err != nil {
 		log.Fatalln(err)
 	}
-	scanner := bufio.NewScanner(data)
+
+}
+
+func printReleaseNotes(filename string) error {
+	f, err := os.Open(filename)
+	if err != nil {
+		return err
+	}
+	scanner := bufio.NewScanner(f)
 	var startPrint bool
 	tagLinePrefix := "## v"
 	for scanner.Scan() {
@@ -33,8 +41,5 @@ func main() {
 			startPrint = true
 		}
 	}
-	if err = scanner.Err(); err != nil {
-		fmt.Fprintln(os.Stderr, "reading standard input:", err)
-	}
-
+	return scanner.Err()
 }
