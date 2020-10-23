@@ -1,4 +1,5 @@
 ![qbec](site/static/images/qbec-logo-black.svg)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fharsimranmaan%2Fqbec.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fharsimranmaan%2Fqbec?ref=badge_shield)
 
 [![Github build status](https://github.com/splunk/qbec/workflows/build/badge.svg)](https://github.com/splunk/qbec/actions)
 [![Go Report Card](https://goreportcard.com/badge/github.com/splunk/qbec)](https://goreportcard.com/report/github.com/splunk/qbec)
@@ -34,3 +35,7 @@ cd qbec
 make install  # installs lint tools etc.
 make
 ```
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fharsimranmaan%2Fqbec.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fharsimranmaan%2Fqbec?ref=badge_large)
