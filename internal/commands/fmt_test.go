@@ -128,8 +128,11 @@ func TestDoFmt(t *testing.T) {
 	}{
 		{[]string{}, fmtCommandConfig{check: true, write: true}, `check and write are not supported together`},
 		{[]string{"nonexistentfile"}, fmtCommandConfig{}, testutil.FileNotFoundMessage},
-		{[]string{"testdata/qbec.yaml"}, fmtCommandConfig{formatTypes: map[string]bool{"yaml": true}, AppContext: cmd.AppContext{}}, ""},
-		{[]string{"testdata/components"}, fmtCommandConfig{formatTypes: map[string]bool{"jsonnet": true}, AppContext: cmd.AppContext{}}, ""},
+		{[]string{"nonexistentfile"}, fmtCommandConfig{check: true}, testutil.FileNotFoundMessage},
+		{[]string{"testdata/qbec.yaml"}, fmtCommandConfig{specifiedTypes: []string{"yaml"}, AppContext: cmd.AppContext{}}, ""},
+		{[]string{"testdata/components"}, fmtCommandConfig{specifiedTypes: []string{"jsonnet"}, AppContext: cmd.AppContext{}}, ""},
+		{[]string{"testdata/components", "testdata/qbec.yaml", "testdata/test.json", "nonexistentfile"}, fmtCommandConfig{check: true, specifiedTypes: []string{"jsonnet", "yaml", "json"}, AppContext: cmd.AppContext{}}, "testdata/qbec.yaml"},
+		{[]string{"testdata/components", "testdata/qbec.yaml", "testdata/test.json", "nonexistentfile"}, fmtCommandConfig{check: true, specifiedTypes: []string{"jsonnet", "yaml", "json"}, AppContext: cmd.AppContext{}}, "testdata/test.json"},
 	}
 
 	for i, test := range tests {
