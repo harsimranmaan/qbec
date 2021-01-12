@@ -130,7 +130,7 @@ func (c *Context) evalFile(jvm *vm.VM, file string) (json string, err error) {
 	if s.IsDir() {
 		return "", fmt.Errorf("file '%s' was a directory", file)
 	}
-	file = filepath.ToSlash(file)
+	//file = filepath.ToSlash(file)
 	return jvm.EvaluateFile(file)
 }
 
